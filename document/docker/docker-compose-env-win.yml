@@ -1,18 +1,28 @@
 version: '3'
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:8.0
     container_name: mysql
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root #设置root帐号密码
+      MYSQL_DATABASE: mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
+      - ./config/mysql/my.cnf:/etc/my.cnf    #加载mysql的配置文件
+      - ./config/mysql/db:/docker-entrypoint-initdb.d  #初始化mysql脚本
       - /d/Program Files/docker/path/mall-swarm/mysql/data/db:/var/lib/mysql #数据文件挂载
-      - /d/Program Files/docker/path/mall-swarm/mysql/data/conf:/etc/mysql/conf.d #配置文件挂载
-      - /d/Program Files/docker/path/mall-swarm/mysql/log:/var/log/mysql #日志文件挂载
+      - /d/Program Files/docker/path/mall-swarm/mysql/log:/var/log/mysql #mysql8日志文件挂载
+    expose:
+      - 3306
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 600M
+        reservations:
+          memory: 600M
   redis:
     image: redis:7
     container_name: redis
@@ -25,7 +35,7 @@ services:
     image: nginx:1.22
     container_name: nginx
     volumes:
-      - /d/Program Files/docker/path/mall-swarm/nginx/conf:/etc/nginx #配置文件挂载
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf #配置文件挂载
       - /d/Program Files/docker/path/mall-swarm/nginx/html:/usr/share/nginx/html #静态资源根目录挂载
       - /d/Program Files/docker/path/mall-swarm/nginx/log:/var/log/nginx #日志文件挂载
     ports:
@@ -33,12 +43,35 @@ services:
   rabbitmq:
     image: rabbitmq:3.9-management
     container_name: rabbitmq
-    volumes:
-      - /d/Program Files/docker/path/mall-swarm/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
-      - /d/Program Files/docker/path/mall-swarm/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
+    hostname: rabbitmq
+    expose:
+      - 5672
+    volumes:
+      - type: bind
+        source: /d/Program Files/docker/path/mall-swarm/rabbitmq/data
+        target: /var/lib/rabbitmq
+      - type: bind
+        source: /d/Program Files/docker/path/mall-swarm/rabbitmq/log
+        target: /var/log/rabbitmq
+      - type: bind
+        source: ./config/rabbitmq/rabbitmq-enabled-plugins
+        target: /etc/rabbitmq/enabled_plugins
+      - type: bind
+        source: ./config/rabbitmq/rabbitmq.config
+        target: /etc/rabbitmq/rabbitmq.config
+      - type: bind
+        source: ./config/rabbitmq/rabbitmq-defs.json
+        target: /etc/rabbitmq/rabbitmq-defs.json
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 200M
+        reservations:
+          memory: 100M
   elasticsearch:
     image: elasticsearch:7.17.18
     container_name: elasticsearch
@@ -59,7 +92,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /d/Program Files/docker/path/mall-swarm/logstash:/usr/share/logstash/pipeline/ #挂载logstash的配置文件
+      - ./config/logstash:/usr/share/logstash/pipeline/ #挂载logstash的配置文件
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
