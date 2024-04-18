@@ -180,6 +180,32 @@ mall
 
 ![](./document/resource/mall_swarm_run_new_08.png)
 
+## docker 启动流程
+    部署准备 https://www.macrozheng.com/mall/deploy/mall_deploy_docker_compose.html
+    1、需要修改nginx配置到指定目录
+
+    2、启动后需要将es启动并添加vHost，当 MallPortalApplication 启动不来时
+
+    添加用户
+    rabbitmqctl add_user mall mall
+    
+    查看用户列表
+    rabbitmqctl list_users
+    
+    为用户设置角色：
+    rabbitmqctl set_user_tags mall administrator
+    
+    添加virtual host，添加一个新的虚拟主机（vhost），vhost是RabbitMQ中用于隔离消息队列的命名空间。：
+    rabbitmqctl add_vhost /mall_vhost
+    
+    为用户设置virtual host：
+    rabbitmqctl set_permissions -p /mall_vhost mall '.*' '.*' '.*'
+
+    3、启动后search启动不了，需要修
+
+
+
+
 ## 公众号
 
 加微信群交流，关注公众号「**macrozheng**」，回复「**加群**」即可。
