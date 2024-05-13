@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:7999
+        namespace: c5c00044-93e6-4e66-8060-3f39aa7ab82b
+        group: ${spring.profiles.active}
+      config:
+        server-addr: http://localhost:7999
+        file-extension: yaml
+        namespace: c5c00044-93e6-4e66-8060-3f39aa7ab82b
+        group: ${spring.profiles.active}
