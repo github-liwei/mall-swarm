@@ -1,7 +1,7 @@
 package com.macro.mall.service.impl;
 
 import com.macro.mall.common.service.RedisService;
-import com.macro.mall.model.UmsAdmin;
+import com.macro.mall.user.api.model.UmsAdmin;
 import com.macro.mall.service.UmsAdminCacheService;
 import com.macro.mall.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,6 @@
 package com.macro.mall.service;
 
-import com.macro.mall.model.UmsAdmin;
-import com.macro.mall.model.UmsResource;
-
-import java.util.List;
+import com.macro.mall.user.api.model.UmsAdmin;
 
 /**
  * 后台用户缓存操作类

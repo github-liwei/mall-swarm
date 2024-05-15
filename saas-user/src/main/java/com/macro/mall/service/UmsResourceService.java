@@ -1,6 +1,6 @@
 package com.macro.mall.service;
 
-import com.macro.mall.model.UmsResource;
+import com.macro.mall.user.api.model.UmsResource;
 
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
 package com.macro.mall.service.impl;
 
-import com.macro.mall.mapper.UmsResourceCategoryMapper;
-import com.macro.mall.model.UmsResourceCategory;
-import com.macro.mall.model.UmsResourceCategoryExample;
+import com.macro.mall.user.api.example.UmsResourceCategoryExample;
+import com.macro.mall.user.api.mapper.UmsResourceCategoryMapper;
+import com.macro.mall.user.api.model.UmsResourceCategory;
 import com.macro.mall.service.UmsResourceCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

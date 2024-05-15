@@ -1,7 +1,7 @@
 package com.macro.mall.service;
 
 import com.macro.mall.dto.UmsMenuNode;
-import com.macro.mall.model.UmsMenu;
+import com.macro.mall.user.api.model.UmsMenu;
 
 import java.util.List;
 

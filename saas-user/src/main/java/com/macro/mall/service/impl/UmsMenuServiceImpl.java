@@ -2,9 +2,10 @@ package com.macro.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.macro.mall.dto.UmsMenuNode;
-import com.macro.mall.mapper.UmsMenuMapper;
-import com.macro.mall.model.*;
+import com.macro.mall.user.api.example.UmsMenuExample;
+import com.macro.mall.user.api.mapper.UmsMenuMapper;
 import com.macro.mall.service.UmsMenuService;
+import com.macro.mall.user.api.model.UmsMenu;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

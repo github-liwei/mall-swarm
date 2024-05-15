@@ -4,7 +4,9 @@ import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.common.domain.UserDto;
 import com.macro.mall.dto.UmsAdminParam;
 import com.macro.mall.dto.UpdateAdminPasswordParam;
-import com.macro.mall.model.*;
+import com.macro.mall.user.api.model.UmsAdmin;
+import com.macro.mall.user.api.model.UmsResource;
+import com.macro.mall.user.api.model.UmsRole;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

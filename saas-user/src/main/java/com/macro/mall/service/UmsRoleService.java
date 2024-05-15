@@ -1,8 +1,8 @@
 package com.macro.mall.service;
 
-import com.macro.mall.model.UmsMenu;
-import com.macro.mall.model.UmsResource;
-import com.macro.mall.model.UmsRole;
+import com.macro.mall.user.api.model.UmsMenu;
+import com.macro.mall.user.api.model.UmsResource;
+import com.macro.mall.user.api.model.UmsRole;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
